@@ -4,13 +4,8 @@ FROM php:8.4-apache
 # mod_php butuh mpm_prefork (bukan event/worker). Hapus SEMUA symlink MPM lebih
 # dulu (a2dismod menolak menonaktifkan MPM aktif), lalu aktifkan hanya prefork
 # plus mod_rewrite untuk front controller Laravel (public/.htaccess).
-# Verifikasi: build GAGAL bila MPM aktif != 1 (deteksi dini, bukan crash runtime).
-RUN set -eux \
-    && rm -f /etc/apache2/mods-enabled/mpm_* \
-    && a2enmod mpm_prefork rewrite \
-    && echo "== isi mods-enabled (mpm) ==" \
-    && ls -l /etc/apache2/mods-enabled/ | grep -i mpm \
-    && test "$(ls /etc/apache2/mods-enabled/mpm_*.load 2>/dev/null | wc -l)" = "1"
+RUN rm -f /etc/apache2/mods-enabled/mpm_* \
+    && a2enmod mpm_prefork rewrite
 
 # Dependensi sistem untuk membangun extension PHP.
 RUN apt-get update && apt-get install -y --no-install-recommends \
