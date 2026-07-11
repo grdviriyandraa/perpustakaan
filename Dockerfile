@@ -1,8 +1,10 @@
 # PerpusApp — image produksi berbasis PHP 8.4 + Apache.
 FROM php:8.4-apache
 
-# Aktifkan mod_rewrite untuk front controller Laravel (public/.htaccess).
-RUN a2enmod rewrite
+# mod_php butuh mpm_prefork (bukan event/worker). Pastikan hanya satu MPM aktif,
+# lalu aktifkan mod_rewrite untuk front controller Laravel (public/.htaccess).
+RUN a2dismod mpm_event mpm_worker 2>/dev/null || true \
+    && a2enmod mpm_prefork rewrite
 
 # Dependensi sistem untuk membangun extension PHP.
 RUN apt-get update && apt-get install -y --no-install-recommends \
