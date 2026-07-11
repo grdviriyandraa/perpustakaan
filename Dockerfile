@@ -1,5 +1,5 @@
-# PerpusApp — image produksi berbasis PHP 8.2 resmi.
-FROM php:8.2-cli
+# PerpusApp — image produksi berbasis PHP 8.4 resmi.
+FROM php:8.4-cli
 
 # Dependensi sistem untuk membangun extension PHP.
 RUN apt-get update && apt-get install -y --no-install-recommends \
