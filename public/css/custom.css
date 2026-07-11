@@ -1,0 +1,105 @@
+/* Tambahan kecil di luar design system prototype (app.css tidak dimodifikasi). */
+
+.field-error {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.notice.success {
+  background: #e9f8f1;
+  color: #1a7a50;
+}
+
+.notice.error {
+  background: #fff0ef;
+  color: #c0392b;
+}
+
+.pagination-wrap {
+  margin-top: 18px;
+}
+
+.pagination-wrap nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.side-item,
+a.link-button,
+a.action-link {
+  text-decoration: none;
+}
+
+.side-count {
+  margin-left: auto;
+  min-width: 22px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--red);
+  color: white;
+  font-size: 11px;
+  font-weight: 850;
+  text-align: center;
+}
+
+.tab-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.tab-link {
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: white;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.tab-link.active {
+  border-color: transparent;
+  background: var(--navy);
+  color: white;
+}
+
+.inline-form {
+  display: inline;
+}
+
+.chart-label-row {
+  display: flex;
+  gap: 14px;
+  padding: 8px 6px 0;
+}
+
+.chart-label-row span {
+  flex: 1;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+.notify-row.unread strong {
+  color: var(--tosca-dark);
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+
+  .print-area {
+    position: absolute;
+    inset: 0;
+  }
+}
