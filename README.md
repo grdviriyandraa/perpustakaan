@@ -48,7 +48,7 @@ Jalankan test: `php artisan test`
 
 ## Deployment (Railway)
 
-Repo sudah menyertakan `nixpacks.toml` dan `railway.json`.
+Repo sudah menyertakan `Dockerfile` dan `railway.json` (builder: Dockerfile).
 
 1. Buat project Railway, tambahkan service **MySQL**
 2. Tambahkan repo GitHub ini sebagai service
