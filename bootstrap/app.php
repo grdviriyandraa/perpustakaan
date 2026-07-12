@@ -11,6 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Railway/proxy mengakhiri TLS lalu meneruskan HTTP ke aplikasi.
+        // Percayai proxy agar Laravel membaca X-Forwarded-Proto=https, sehingga
+        // asset()/url() menghasilkan URL https (bukan mixed-content yang diblokir).
+        $middleware->trustProxies(at: '*');
+
         $middleware->alias([
             'auth.anggota' => \App\Http\Middleware\AuthAnggota::class,
             'auth.admin' => \App\Http\Middleware\AuthAdmin::class,
