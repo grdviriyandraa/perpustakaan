@@ -1,6 +1,10 @@
 # PerpusApp — image produksi berbasis PHP 8.4 + Apache.
 FROM php:8.4-apache
 
+# Pemaksa rebuild: naikkan nilai ini untuk membatalkan cache Docker sepenuhnya.
+ARG CACHEBUST=20260711-1
+RUN echo "cachebust=${CACHEBUST}"
+
 # mod_php butuh mpm_prefork (bukan event/worker). Hapus SEMUA symlink MPM lebih
 # dulu (a2dismod menolak menonaktifkan MPM aktif), lalu aktifkan hanya prefork
 # plus mod_rewrite untuk front controller Laravel (public/.htaccess).
