@@ -1,11 +1,6 @@
 #!/bin/sh
-# Skrip start produksi untuk Railway.
+# Skrip start produksi untuk Railway (server bawaan Laravel).
 set -e
-
-# Railway menyuntikkan $PORT. Sesuaikan port Apache agar cocok (default 8080).
-PORT="${PORT:-8080}"
-sed -i "s/Listen [0-9]*/Listen ${PORT}/" /etc/apache2/ports.conf
-sed -i "s/:[0-9]*>/:${PORT}>/" /etc/apache2/sites-available/000-default.conf
 
 # Private network Railway kadang telat siap beberapa detik setelah container
 # start. Coba migrate beberapa kali sebelum menyerah.
@@ -27,4 +22,6 @@ fi
 php artisan db:seed --force
 php artisan config:clear
 
-exec apache2-foreground
+# Railway mengarahkan trafik ke $PORT. Server harus mendengarkan di port itu.
+PORT="${PORT:-8080}"
+exec php artisan serve --host=0.0.0.0 --port="${PORT}"
