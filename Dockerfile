@@ -2,7 +2,7 @@
 FROM php:8.4-apache
 
 # Pemaksa rebuild: naikkan nilai ini untuk membatalkan cache Docker sepenuhnya.
-ARG CACHEBUST=20260711-1
+ARG CACHEBUST=20260711-2
 RUN echo "cachebust=${CACHEBUST}"
 
 # mod_php butuh mpm_prefork (bukan event/worker). Hapus SEMUA symlink MPM lebih
